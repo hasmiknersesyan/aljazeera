@@ -2,12 +2,7 @@
 
 declare global {
   namespace CodeceptJS {
-    /**
-     * Locator can be a string, an object, or anything accepted by WebDriverIO / Codecept.
-     */
-    // type Locator =
-    //   | string
-    //   | { css?: string; xpath?: string; id?: string; name?: string; [key: string]: any };
+
 
     interface I {
       /** Navigate to a page by URL */
@@ -45,6 +40,8 @@ declare global {
 
       /** Alias for assertOk (handy when destructured) */
       assert(condition: any, message?: string): void;
+
+      fail(message: string): void;
     }
   }
 }
