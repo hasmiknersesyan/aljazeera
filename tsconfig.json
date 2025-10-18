@@ -6,7 +6,7 @@
     "strict": true,
     "outDir": "dist",
     "esModuleInterop": true,
-    "types": ["node"],
+    "types": ["node", "codeceptjs"],
     "resolveJsonModule": true,
     "skipLibCheck": true
   },
