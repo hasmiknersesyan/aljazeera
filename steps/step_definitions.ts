@@ -2,19 +2,40 @@
 /// <reference path="../steps.d.ts" />
 /// <reference path="../types/codecept-augment.d.ts" />
 
-import HomePage from '../pages/HomePage';
-import MostRead from '../pages/MostRead';
-import LivePage from '../pages/LivePage';
-import { pressTabNTimes, waitForUrlFragment } from '../support/helpers';
+// Use require instead of import for page objects
+const HomePage = require('../pages/HomePage').default;
+const MostRead = require('../pages/MostRead').default;
+const LivePage = require('../pages/LivePage').default;
+// Use require for helpers too
+const { pressTabNTimes, waitForUrlFragment } = require('../support/helpers');
 
-// Use CommonJS import for Gherkin DSL (they’re global, not real ES exports)
-const { Given, When, Then } = require('codeceptjs');
+// No need to import Given, When, Then as they are already globally available
+// from the codeceptjs type references above
 
-type ActorContext = { I: CodeceptJS.I };
+// Before hook is already globally available from the codeceptjs type references
+// No need to import it explicitly
 
-let home: HomePage;
-let mostRead: MostRead;
-let live: LivePage;
+// We're now using CodeceptJS.I directly in the step definitions
+// No need for a separate ActorContext type
+
+let home: any;
+let mostRead: any;
+let live: any;
+
+// Add a Before hook to initialize page objects
+Before(({ I }) => {
+  // This hook runs before each scenario
+  console.log('Before hook is running with I object:', I ? 'I exists' : 'I is undefined');
+  // Initialize page objects with the I object
+  if (I) {
+    home = new HomePage(I);
+    mostRead = new MostRead(I);
+    live = new LivePage(I);
+    console.log('Page objects initialized');
+  } else {
+    console.log('Cannot initialize page objects: I is undefined');
+  }
+});
 
 /**
  * -------------------------
@@ -22,9 +43,8 @@ let live: LivePage;
  * -------------------------
  */
 
-Given('I am on the Al Jazeera home page', async ({ I }: ActorContext) => {
-  home = new HomePage(I);
-  mostRead = new MostRead(I);
+Given('I am on the Al Jazeera home page', async () => {
+  // Page objects are already initialized in the Before hook
   await home.open();
 });
 
@@ -32,11 +52,11 @@ When('I focus the page header to reveal accessibility skip links', async () => {
   await home.focusPageChromeWorkaround();
 });
 
-When('I open the Bypass Blocks menu via keyboard', async ({ I }: ActorContext) => {
+When('I open the Bypass Blocks menu via keyboard', async (I: CodeceptJS.I) => {
   await pressTabNTimes(I, 1);
 });
 
-When('I click the "Skip to Most Read" menu item', async ({ I }: ActorContext) => {
+When('I click the "Skip to Most Read" menu item', async (I: CodeceptJS.I) => {
   await I.click('//a[contains(., "Skip to Most Read")]');
   await waitForUrlFragment(I, '#most-read-container', 5);
 });
@@ -63,8 +83,8 @@ Then('the URL should include the Most Read anchor', async () => {
  * -------------------------
  */
 
-Given('I am on the Al Jazeera live page', async ({ I }: ActorContext) => {
-  live = new LivePage(I);
+Given('I am on the Al Jazeera live page', async () => {
+  // Page objects are already initialized in the Before hook
   await live.open();
 });
 

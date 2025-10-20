@@ -4,13 +4,22 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 setHeadlessWhen(process.env.HEADLESS === 'true');
 
-export const config: Partial<CodeceptJS.MainConfig> = {
+// Define MainConfig interface to avoid TypeScript error
+interface MainConfig {
+  name: string;
+  output: string;
+  tests: string;
+  helpers: any;
+  gherkin: any;
+  plugins: any;
+}
+
+export const config: Partial<MainConfig> = {
   name: 'aljazeera-tests',
   output: './output',
- tests: './_dummy/*.ts',
+  tests: './features/*.feature',
   helpers: {
     WebDriver: {
-
       url: 'https://www.aljazeera.com',
       browser: 'chrome',
       windowSize: '1440x900',
@@ -27,7 +36,6 @@ export const config: Partial<CodeceptJS.MainConfig> = {
         }
       } as any)
     },
-
   },
   gherkin: {
     features: './features/*.feature',
@@ -42,4 +50,27 @@ export const config: Partial<CodeceptJS.MainConfig> = {
     }
   }
 };
+// Define profiles for desktop and mobile testing
+export const profiles = {
+  desktop: {
+    helpers: {
+      WebDriver: {
+        windowSize: '1440x900'
+      }
+    }
+  },
+  mobile: {
+    helpers: {
+      WebDriver: {
+        windowSize: '375x667', // iPhone 8 size
+        desiredCapabilities: {
+          'goog:chromeOptions': {
+            args: ['--no-sandbox', '--disable-gpu', '--mobile-emulation']
+          }
+        }
+      }
+    }
+  }
+};
+
 export default config;
