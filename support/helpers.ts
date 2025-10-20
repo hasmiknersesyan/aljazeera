@@ -1,5 +1,7 @@
 /// <reference types="codeceptjs" />
 /// <reference path="../steps.d.ts" />
+/// <reference path="../types/codecept-augment.d.ts" />
+
 
 export async function pressTabNTimes(I: CodeceptJS.I, n: number) {
   for (let i = 0; i < n; i++) {

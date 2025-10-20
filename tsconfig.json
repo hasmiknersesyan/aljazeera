@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    
     "target": "ES2022",
     "module": "CommonJS",
     "moduleResolution": "Node",
@@ -10,6 +11,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "include": ["**/*.ts", "steps.d.ts", "types/**/*.d.ts"],
+  "include": ["**/*.ts", "steps.d.ts", "types/**/*.d.ts", "steps/step_definitions.ts", "support/helpers.ts", "support/locators.ts", "pages/HomePage.ts"],
   "exclude": ["dist", "node_modules"]
 }

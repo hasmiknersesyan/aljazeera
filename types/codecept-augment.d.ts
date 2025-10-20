@@ -3,6 +3,9 @@
 declare global {
   namespace CodeceptJS {
 
+  type Locator =
+      | string
+      | { css?: string; xpath?: string; id?: string; name?: string; [key: string]: any };
 
     interface I {
       /** Navigate to a page by URL */

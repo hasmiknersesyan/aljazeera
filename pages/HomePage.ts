@@ -1,5 +1,7 @@
 /// <reference types="codeceptjs" />
 /// <reference path="../steps.d.ts" />
+/// <reference path="../types/codecept-augment.d.ts" />
+
 import { Locators } from '../support/locators';
 
 const HOME_URL = '/';

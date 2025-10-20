@@ -1,5 +1,6 @@
 /// <reference types="codeceptjs" />
 /// <reference path="../steps.d.ts" />
+/// <reference path="../types/codecept-augment.d.ts" />
 
 import HomePage from '../pages/HomePage';
 import MostRead from '../pages/MostRead';

@@ -25,6 +25,12 @@ This project automates:
 ## Setup
 ```bash
 git clone https://github.com/hasmiknersesyan/aljazeera
-cd codecept-bdd-aljazeera
+cd ./aljazeera
 cp .env  
 npm i
+```
+
+## Test Run
+```bash
+npm run test:desktop
+npm run test:mobile
