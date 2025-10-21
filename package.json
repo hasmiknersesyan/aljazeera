@@ -7,12 +7,9 @@
     "pretest": "npm run build",
     "build": "tsc -p tsconfig.json",
     "test:bdd": "npm run build && npx codeceptjs run --features --steps",
-    "test:desktop": "cross-env CODECEPT_PROFILE=desktop npx codeceptjs run --steps",
-    "test:mobile": "cross-env CODECEPT_PROFILE=mobile npx codeceptjs run --steps",
     "bdd:desktop":"npx codeceptjs run --grep @desktop --steps",
-    "bdd:mobile": "cross-env CODECEPT_PROFILE=mobile npx codeceptjs run --grep @mobile --steps",
     "bdd:livestream": "npx codeceptjs run --grep @livestream --steps",
-    "all": "npm run bdd:desktop && npm run bdd:mobile",
+    "test:all": "npm run bdd:desktop && npm run bdd:livestream",
     "allure:clean": "rimraf allure-report allure-results || true && rimraf output/allure || true",
     "allure:generate": "allure generate --clean output/allure -o allure-report",
     "allure:open": "allure open allure-report"

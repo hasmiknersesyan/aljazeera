@@ -32,5 +32,7 @@ npm i
 
 ## Test Run
 ```bash
-npm run test:desktop
-npm run test:mobile
+npm run bdd:desktop
+npm run bdd:livestream
+npm run test:all
+```

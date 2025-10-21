@@ -4,7 +4,6 @@
 
 import { Locators } from '../support/locators';
 
-const LIVE_URL = '/live';
 export default class LivePage {
     private I: CodeceptJS.I;
 
@@ -12,9 +11,8 @@ export default class LivePage {
         this.I = I;
     }
 
-
     async open() {
-        this.I.amOnPage("https://www.aljazeera.com/live");
+        this.I.amOnPage("/live");
         await this.I.waitForElement(Locators.live.playerRoot, 1);
     }
 

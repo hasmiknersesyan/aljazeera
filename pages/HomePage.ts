@@ -4,7 +4,6 @@
 
 import { Locators } from '../support/locators';
 
-const LIVE_URL = '/';
 export default class HomePage {
     private I: CodeceptJS.I;
 
@@ -14,7 +13,7 @@ export default class HomePage {
 
 
     async open() {
-        this.I.amOnPage("https://www.aljazeera.com");
+        this.I.amOnPage("/");
          await this.I.waitForElement('header', 10);
     }
 
