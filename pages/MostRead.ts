@@ -1,58 +1,42 @@
-/// <reference types="codeceptjs" />
-/// <reference path="../steps.d.ts" />
-/// <reference path="../types/codecept-augment.d.ts" />
-
-import { Locators } from '../support/locators';
+import { resolveFirstExistingSelector, assertEqual } from '../support/helpers';
+const { Locators } = require('../support/locators');
 
 export default class MostRead {
-    private I: CodeceptJS.I;
+  private I: CodeceptJS.I;
+  constructor(I: CodeceptJS.I) { this.I = I; }
 
-    constructor(I: CodeceptJS.I) {
-        this.I = I;
-    }
+  private async container(): Promise<string> {
+    // Try robust candidates; fall back to the ID
+    return await resolveFirstExistingSelector(this.I, Locators.mostRead.containerCandidates);
+  }
 
-    async isVisible(): Promise<boolean> {
-        for (const candidate of [Locators.mostRead.containerById, ...Locators.mostRead.containerCandidates]) {
-            const count = await this.I.grabNumberOfVisibleElements(candidate);
-            if (count > 0) return true;
-        }
-        return false;
-    }
+    private async getContainer(): Promise<string> {
+    return await resolveFirstExistingSelector(this.I, Locators.mostRead.containerCandidates);
+  }
+  private async itemsSelector(): Promise<string> {
+    const root = await this.getContainer();
+    // Build items selector relative to the container we actually found
+    return `${root} a, ${root} li article, ${root} li a`;
+  }
 
-    async assertVisible() {
-        const visible = await this.isVisible();
-        this.I.assertEqual(visible, true, '"Most Read" section should be visible');
-    }
+  async assertVisible() {
+    const root = await this.getContainer();
+    this.I.seeElement(root);
+  }
 
-    async assertNotVisible() {
-        const visible = await this.isVisible();
-        this.I.assertEqual(visible, false, '"Most Read" section should NOT be visible on mobile');
-    }
+  async assertHasExactly(count: number) {
+    const items = await this.itemsSelector();
+    const visible = await this.I.grabNumberOfVisibleElements(items);
+    assertEqual(visible, count, `Expected ${count} posts in Most Read section`);
+  }
 
-    async countItems(): Promise<number> {
-        // try the strict selector first
-        let items = await this.I.grabNumberOfVisibleElements(Locators.mostRead.items());
-        if (items === 0) {
-            // fallback: list items inside any “most read” candidate
-            for (const candidate of Locators.mostRead.containerCandidates) {
-                items = await this.I.grabNumberOfVisibleElements(`${candidate} li, ${candidate} a, ${candidate} article`);
-                if (items > 0) break;
-            }
-        }
-        return items;
-    }
+  async assertNotVisible() {
+    const root = await this.getContainer();
+    this.I.seeElement(root);
+  }
 
-    async assertHasExactly(count: number) {
-        const items = await this.countItems();
-        this.I.assertEqual(
-            items,
-            count,
-            `Expected "Most Read" to have ${count} posts, but found ${items}`
-        );
-    }
-
-    async assertUrlHasAnchor() {
-        const url = await this.I.grabCurrentUrl();
-        // this.I.assertOk(url.includes('#most-read-container'), `URL should contain '#most-read-container' but was ${url}`);
-    }
+  async assertUrlHasAnchor() {
+    const url = await this.I.grabCurrentUrl();
+    this.I.assertOk(url.includes('#most-read-container'), `URL missing '#most-read-container'`);
+  }
 }

@@ -4,18 +4,24 @@
 
 import { Locators } from '../support/locators';
 
-const HOME_URL = '/';
+const LIVE_URL = '/';
 export default class HomePage {
-  private I: CodeceptJS.I;
+    private I: CodeceptJS.I;
 
-  constructor(I: CodeceptJS.I) {
-    this.I = I;
-  }
+    constructor(I: CodeceptJS.I) {
+        this.I = I;
+    }
+
 
     async open() {
-        this.I.amOnPage("https://www.aljazeera.com/");
-        await this.I.waitForElement(Locators.live.playerRoot, 1);
+        this.I.amOnPage("https://www.aljazeera.com");
+         await this.I.waitForElement('header', 10);
     }
+
+    // async open() {
+    //     this.I.amOnPage("https://www.aljazeera.com/");
+    //     await this.I.waitForElement(Locators.live.playerRoot, 1);
+    // }
 
   /*************  ✨ Windsurf Command ⭐  *************/
   /**

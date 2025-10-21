@@ -9,6 +9,8 @@ export const Locators = {
             '[data-section="most-read"]',
             'section[aria-labelledby*="Most Read"]'
         ],
+        /**\returning a selector that matches all article links inside the Most Read container.
+         *  It combines a, article, and li a because the markup can vary. */
         items: () => `${Locators.mostRead.containerById} a, ${Locators.mostRead.containerById} li article, ${Locators.mostRead.containerById} li a`
     },
 

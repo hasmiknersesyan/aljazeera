@@ -1,5 +1,4 @@
-@desktop
-@mobile
+@livestream
 Feature: Livestream page
 
   Scenario: Scenario 1 - Validate Player is visible in Livestream Player

@@ -1,10 +1,8 @@
 @desktop
 Feature: Most Read section on Al Jazeera home page
 
-  Background:
-    Given I am on the Al Jazeera home page
-
   Scenario: Scenario 1 - Desktop: "Most Read" section appears
+    Given I am on the Al Jazeera home page
     Then the "Most Read" section should be visible on desktop
 
   Scenario: Scenario 2 - Desktop: "Most Read" has 10 posts
@@ -15,3 +13,4 @@ Feature: Most Read section on Al Jazeera home page
     And I open the Bypass Blocks menu via keyboard
     And I click the "Skip to Most Read" menu item
     Then the URL should include the Most Read anchor
+
