@@ -1,0 +1,8 @@
+node_modules/
+dist/
+output/
+allure-results/
+allure-report/
+allure-history/
+reports/
+screenshots/
