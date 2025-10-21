@@ -1,4 +1,4 @@
-@mobile
+
 Feature: Most Read on mobile
 
   Background:

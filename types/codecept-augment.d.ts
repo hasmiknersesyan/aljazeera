@@ -3,11 +3,19 @@
 declare global {
   namespace CodeceptJS {
 
-  type Locator =
+    type Locator =
       | string
-      | { css?: string; xpath?: string; id?: string; name?: string; [key: string]: any };
+      | { css?: string; xpath?: string; id?: string; name?: string;[key: string]: any };
 
     interface I {
+
+      executeScript<T = any>(
+        fn: (...args: any[]) => T,
+        ...args: any[]
+      ): Promise<T>;
+
+
+      refreshPage<T = any>(): Promise<T>;
       /** Navigate to a page by URL */
       amOnPage(url: string): Promise<void>;
 

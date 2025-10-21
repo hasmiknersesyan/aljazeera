@@ -12,11 +12,19 @@ export default class HomePage {
     this.I = I;
   }
 
-  async open() {
-    this.I.amOnPage(HOME_URL);
-    await this.I.wait(1); // small settle
-  }
+    async open() {
+        this.I.amOnPage("https://www.aljazeera.com/");
+        await this.I.waitForElement(Locators.live.playerRoot, 1);
+    }
 
+  /*************  ✨ Windsurf Command ⭐  *************/
+  /**
+   * Focus the page header to reveal accessibility skip links
+   * on Chrome by clicking the top-left of the header.
+   * This is a workaround because Chrome does not focus the page
+   * when clicking the body or html elements.
+   */
+  /*******  3c25b8e7-3ede-4806-84d6-43feeb8c0803  *******/
   async focusPageChromeWorkaround() {
     // click header to move focus into the document, then tabbing reveals skip links
     this.I.seeElement(Locators.header);

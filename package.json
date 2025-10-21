@@ -21,7 +21,7 @@
     "@codeceptjs/configure": "^1.0.6",
     "@types/node": "^22.18.11",
     "allure-commandline": "^2.34.1",
-    "chromedriver": "^130.0.4",
+    "chromedriver": "^141.0.3",
     "codeceptjs": "^3.7.5",
     "cross-env": "^10.1.0",
     "dotenv": "^16.6.1",
