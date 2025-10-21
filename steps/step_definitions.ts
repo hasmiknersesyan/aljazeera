@@ -6,17 +6,8 @@
 const HomePage = require('../pages/HomePage').default;
 const MostRead = require('../pages/MostRead').default;
 const LivePage = require('../pages/LivePage').default;
-// Use require for helpers too
 const { pressTabNTimes, waitForUrlFragment } = require('../support/helpers');
 
-// No need to import Given, When, Then as they are already globally available
-// from the codeceptjs type references above
-
-// Before hook is already globally available from the codeceptjs type references
-// No need to import it explicitly
-
-// We're now using CodeceptJS.I directly in the step definitions
-// No need for a separate ActorContext type
 
 let home: any;
 let mostRead: any;

@@ -25,9 +25,7 @@ export async function assertOk(condition: any, message?: string) {
   assert.ok(condition, message || 'Expected condition to be truthy');
 }
 
-/**
- * Utility: wait for URL to contain a specific fragment/hash.
- */
+
 export async function waitForUrlFragment(I: CodeceptJS.I, fragment: string, timeoutSec = 5) {
   const start = Date.now();
   while ((Date.now() - start) / 1000 < timeoutSec) {
@@ -54,8 +52,6 @@ export async function resolveFirstVisibleSelector(
     await I.wait(0.25);
   }
 
-  // If nothing visible, still return the first as fallback (string),
-  // so subsequent calls get a string (and not an array).
   return selectors[0];
 }
 
