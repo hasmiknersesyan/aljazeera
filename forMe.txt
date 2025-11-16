@@ -1,0 +1,19 @@
+Initialize CodeceptJS for your project:
+🔨 npx codeceptjs init - initialize codeceptjs for current project (required)      
+➕ npm run codeceptjs - runs codeceptjs tests for current project
+➕ npm run codeceptjs:headless - executes codeceptjs tests headlessly (no window shown)
+➕ npm run codeceptjs:ui - starts codeceptjs UI application for current project    
+
+
+ Useful links:
+  👉 How to start testing ASAP: https://codecept.io/quickstart/#init
+  👉 How to select helper: https://codecept.io/basics/#architecture
+  👉 TypeScript setup: https://codecept.io/typescript/#getting-started
+
+  By default, CodeceptJS tests are written in synchronous mode. 
+  Our philosophy here is: use await only when it is actually needed,
+   don't add visual mess to your code prefixing each line with await. However, you might want to get a better control of your tests and follow TypeScript conventions.
+   This is why you might want to enable promise-based typings.
+
+   Using await explicitly provides a beter control of execution flow.
+    Some CodeceptJS users report that they increased stability of tests by adopting await for all CodeceptJS commands in their codebase.

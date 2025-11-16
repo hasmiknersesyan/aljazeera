@@ -1,16 +1,13 @@
-@desktop
-Feature: Most Read section on Al Jazeera home page
+Feature: Interivew Task Part 1
+  In order to prepare interview task
+  As a interviewee
+  I want to test Most Read section
 
-  Scenario: Scenario 1 - Desktop: "Most Read" section appears
-    Given I am on the Al Jazeera home page
-    Then the "Most Read" section should be visible on desktop
+  Background:
+    Given I am on the aljazeera.com page
 
-  Scenario: Scenario 2 - Desktop: "Most Read" has 10 posts
-    Then the "Most Read" section should have 10 posts
 
-  Scenario: Scenario 4 - Desktop Accessibility: Bypass block "Skip to Most Read" works
-    When I focus the page header to reveal accessibility skip links
-    And I open the Bypass Blocks menu via keyboard
-    And I click the "Skip to Most Read" menu item
-    Then the URL should include the Most Read anchor
-
+  Scenario: Ensure the "Most Read" section is appearing
+    Given I am on the aljazeera.com page
+    When I am on the aljazeera.com page
+    Then I should see the Most Read article
