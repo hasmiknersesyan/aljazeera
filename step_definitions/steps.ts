@@ -7,24 +7,24 @@ Before(async () => {
   mostReadPage = new MostReadPage();
 });
 
-Given('I have Most Read article on the page', async () => {
-  console.log('Most Read section is present on the page');
-});
-
-When('I am on the aljazeera.com page', () => {
+Given('I open the Al Jazeera homepage', async () => {
   I.amOnPage('/');
   I.wait(2);
 });
 
-Then('I should see the Most Read article', async () => {
+When('I view the page on a desktop screen size', () => {
+  I.resizeWindow(1920, 1080);
+});
+
+Then('I should see the Most Read section', async () => {
   await mostReadPage.seeMostReadArticles();
 });
 
-When('I resize the window to mobile size', () => {
+When('I view the page on a mobile screen size', () => {
   I.resizeWindow(375, 812);   // Mobile viewport (iPhone size)
   I.wait(2);
 });
 
-Then('the Most Read article should be hidden for mobile', async () => {
+Then('I should not see the Most Read section', async () => {
   await mostReadPage.checkNotVisibleForMobile();
 });

@@ -1,19 +1,16 @@
-Feature: Interivew Task Part 1
-  In order to prepare interview task
-  As a interviewee
-  I want to test Most Read section
+Feature: Interview Task Part 1
+  In order to ensure the site behaves correctly on different devices
+  As an interviewee
+  I want to verify the visibility of the Most Read section
 
   Background:
-   I have Most Read article on the page
+    Given I open the Al Jazeera homepage
+    
 
-  Scenario: Should Verify the "Most Read" Section on Desktop
-    Given I have Most Read article on the page
-    When I am on the aljazeera.com page
-    Then I should see the Most Read article
+  Scenario: The "Most Read" section should be visible on Desktop
+    When I view the page on a desktop screen size
+    Then I should see the Most Read section
 
-  Scenario: Should Verify the "Most Read" Section on Mobile
-    Given I have Most Read article on the page
-    When I resize the window to mobile size
-    Then the Most Read article should be hidden for mobile
-
-
+  Scenario: The "Most Read" section should be hidden on Mobile
+    When I view the page on a mobile screen size
+    Then I should not see the Most Read section
