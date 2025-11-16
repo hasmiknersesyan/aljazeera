@@ -7,7 +7,8 @@ exports.config = {
     }
   },
   include: {
-    I: './steps_file'
+    I: './steps_file',
+    MostReadPage: "./pages/most_read.ts",
   },
   mocha: {},
   bootstrap: null,

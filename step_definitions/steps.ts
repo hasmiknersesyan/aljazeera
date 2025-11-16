@@ -1,24 +1,23 @@
 const { I } = inject();
-// Add in your custom step files
+import { MostReadPage } from '../pages/most_read';
 
+let mostReadPage: MostReadPage;
 
-Given('I am on the aljazeera.com page', () => {
-  I.amOnPage('/');
-  I.wait(2);
-
+Before(async () => {
+  mostReadPage = new MostReadPage();
 });
 
-When('I am on the aljazeera.com page', async () => {
-  // const mustReadSection = 'h3[data-testid="branded-collection-title-bar"]';
-  // I.waitForElement(mostReadSection, 5);
-  // I.see('Most Read');
-  console.log('I have Most Read article on the page');
+Given('I have Most Read article on the page', async () => {
+  console.log('Most Read section is present on the page');
+});
+
+When('I am on the aljazeera.com page', () => {
+  I.amOnPage('/');
+  I.wait(2);
 });
 
 Then('I should see the Most Read article', async () => {
-  // I.seeElement('div[id=\"most-read-container\"]');
-  // I.see('Must reads');
-
-  const articleItems = 'h3[data-testid="branded-collection-title-bar"]';
-  I.seeElement(articleItems);
+    // const articleItems = '//div[contains(@class, "bypass-block-links-container")]//a[contains(text(), "Skip to Most Read")]';
+    // I.seeElement(articleItems);
+    await mostReadPage.seeMostReadArticles();
 });

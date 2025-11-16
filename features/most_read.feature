@@ -4,10 +4,9 @@ Feature: Interivew Task Part 1
   I want to test Most Read section
 
   Background:
-    Given I am on the aljazeera.com page
-
+   I have Most Read article on the page
 
   Scenario: Ensure the "Most Read" section is appearing
-    Given I am on the aljazeera.com page
+    Given I have Most Read article on the page
     When I am on the aljazeera.com page
     Then I should see the Most Read article
