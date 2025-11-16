@@ -17,7 +17,14 @@ When('I am on the aljazeera.com page', () => {
 });
 
 Then('I should see the Most Read article', async () => {
-    // const articleItems = '//div[contains(@class, "bypass-block-links-container")]//a[contains(text(), "Skip to Most Read")]';
-    // I.seeElement(articleItems);
-    await mostReadPage.seeMostReadArticles();
+  await mostReadPage.seeMostReadArticles();
+});
+
+When('I resize the window to mobile size', () => {
+  I.resizeWindow(375, 812);   // Mobile viewport (iPhone size)
+  I.wait(2);
+});
+
+Then('the Most Read article should be hidden for mobile', async () => {
+  await mostReadPage.checkNotVisibleForMobile();
 });
