@@ -4,21 +4,13 @@
     "private": true,
     "description": "CodeceptJS BDD Test Automation Framework for aljazeera.com",
     "scripts": {
-        "pretest": "npm run build",
-        "build": "tsc -p tsconfig.json",
-        "test:bdd": "npm run build && npx codeceptjs run --features --steps",
-        "bdd:desktop": "npx codeceptjs run --grep @desktop --steps",
-        "bdd:livestream": "npx codeceptjs run --grep @livestream --steps",
-        "test:all": "npm run bdd:desktop && npm run bdd:livestream",
+        "test:bdd": "npx codeceptjs run --features --steps",
+        "bdd:bypass": "npx codeceptjs run --grep @bypass --steps",
+        "bdd:livestream": "npx codeceptjs run --grep @live --steps",
+        "test:all": "npm run bdd:bypass && npm run bdd:livestream",
         "allure:clean": "rimraf allure-report allure-results || true && rimraf output/allure || true",
         "allure:generate": "allure generate --clean output/allure -o allure-report",
-        "allure:open": "allure open allure-report",
-        "codeceptjs": "codeceptjs run --steps",
-        "codeceptjs:headless": "HEADLESS=true codeceptjs run --steps",
-        "codeceptjs:ui": "codecept-ui --app",
-        "codeceptjs:demo": "codeceptjs run --steps -c node_modules/@codeceptjs/examples",
-        "codeceptjs:demo:headless": "HEADLESS=true codeceptjs run --steps -c node_modules/@codeceptjs/examples",
-        "codeceptjs:demo:ui": "codecept-ui --app  -c node_modules/@codeceptjs/examples"
+        "allure:open": "allure open allure-report"
     },
     "devDependencies": {
         "@codeceptjs/allure-legacy": "^1.0.2",

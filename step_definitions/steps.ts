@@ -1,10 +1,13 @@
 const { I } = inject();
 import { MostReadPage } from '../pages/most_read';
+import { LivePage } from '../pages/live';
 
 let mostReadPage: MostReadPage;
+let livePage: LivePage;
 
 Before(async () => {
   mostReadPage = new MostReadPage();
+  livePage = new LivePage();
 });
 
 Given('I open the Al Jazeera homepage', async () => {
@@ -52,4 +55,17 @@ When('I activate the "Skip to Most Read" option', () => {
 });
 Then('the URL should contain "#most-read-container"', async () => {
   await mostReadPage.changedURL();
+});
+
+Given('I open the Al Jazeera livestream page', async () => {
+  I.amOnPage('/live');
+  I.wait(2);
+});
+
+Then('I should see the video player', async () => {
+  await livePage.seeVideoPlayer();
+});
+
+Then('I should see the Switch Player button', async () => {
+  await livePage.seeSwitchPlayerButton();
 });
