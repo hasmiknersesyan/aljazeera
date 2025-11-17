@@ -16,5 +16,8 @@ Feature: Interview Task Part 1
     When I view the page on a mobile screen size
     Then I should not see the Most Read section
 
-
-
+  @bypass
+  Scenario: The bypass block menu item for "Most Read" should work (accessibility)
+    When I view the page on a desktop screen size
+    Then I should see the bypass link
+   

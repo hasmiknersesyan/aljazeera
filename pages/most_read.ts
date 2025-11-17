@@ -5,12 +5,13 @@ export class MostReadPage {
   mobileAttribute: string;
   mostReadBlock: string;
   mostReadBlockHeader: string;
+  bypassLink: string;
 
   constructor() {
     this.mostReadBlock = '//aside[@id="most-read-container"]';
     this.mostReadBlockHeader = 'h2[id="trending-articles-heading"]'
     this.articleItems = 'ol.trending-articles__list li';
-    this.mobileAttribute = '.bypass-block-link.hidden--mobile';
+    this.bypassLink = '.bypass-block-link.hidden--mobile';
   }
 
   async seeMostReadBlock() {
@@ -26,10 +27,13 @@ export class MostReadPage {
   async checkNotVisibleHeaderForMobile() {
     I.dontSeeElement(this.mostReadBlockHeader);
   }
-  async checkNotVisibleForMobile() {
-    // I.resizeWindow(375, 812);   // Mobile viewport (iPhone size)
-    I.dontSeeElement(this.mobileAttribute);
-    // I.dontSeeElementOnCurrentUrl(this.articleItems);
+
+  async checkBypassLink() {
+    I.seeElement(this.bypassLink);
+  }
+
+  async checkBypassLinkIsClickable() {
+    I.isClickable(this.bypassLink);
   }
 }
 

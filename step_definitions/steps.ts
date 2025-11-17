@@ -1,5 +1,4 @@
 const { I } = inject();
-import assert from 'assert';
 import { MostReadPage } from '../pages/most_read';
 
 let mostReadPage: MostReadPage;
@@ -22,7 +21,7 @@ Then('I should see the Most Read section', async () => {
 });
 
 Then('I should see the "Most Read" section has 10 posts', async () => {
- await mostReadPage.seeMostReadArticles(10);
+  await mostReadPage.seeMostReadArticles(10);
 });
 
 When('I view the page on a mobile screen size', () => {
@@ -30,7 +29,11 @@ When('I view the page on a mobile screen size', () => {
   I.wait(2);
 });
 
-Then('I should not see the Most Read section', async () => {
-  await mostReadPage.checkNotVisibleHeaderForMobile();
+Then('I should see the bypass link', async () => {
+  await mostReadPage.checkBypassLink();
 });
 
+
+Then('I should see the bypass link is clickable', async () => {
+  await mostReadPage.checkBypassLinkIsClickable();
+});
