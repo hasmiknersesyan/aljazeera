@@ -6,12 +6,14 @@ export class MostReadPage {
   mostReadBlock: string;
   mostReadBlockHeader: string;
   bypassLink: string;
+  byPassContainer: string;
 
   constructor() {
     this.mostReadBlock = '//aside[@id="most-read-container"]';
     this.mostReadBlockHeader = 'h2[id="trending-articles-heading"]'
     this.articleItems = 'ol.trending-articles__list li';
     this.bypassLink = '.bypass-block-link.hidden--mobile';
+    this.byPassContainer = '.bypass-block-links-container';
   }
 
   async seeMostReadBlock() {
@@ -32,8 +34,27 @@ export class MostReadPage {
     I.seeElement(this.bypassLink);
   }
 
-  async checkBypassLinkIsClickable() {
-    I.isClickable(this.bypassLink);
+  async clickOnHeader() {
+    I.click('header');
+  }
+
+    async pressTab() {
+    I.pressKey('Tab');
+     I.pressKey('Tab');
+      I.pressKey('Tab');
+  
+  }
+
+  async pressEnter() {
+    I.pressKey('Enter');
+  }
+
+  async checkBypassLinkContainerAppears() {
+   I.seeElement('.bypass-block-links-container');
+  }
+
+  async changedURL() {
+    I.seeInCurrentUrl('#most-read-container');
   }
 }
 

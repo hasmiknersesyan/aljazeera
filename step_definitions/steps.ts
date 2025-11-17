@@ -34,6 +34,22 @@ Then('I should see the bypass link', async () => {
 });
 
 
-Then('I should see the bypass link is clickable', async () => {
-  await mostReadPage.checkBypassLinkIsClickable();
+
+Given('I click the empty white space', () => {
+  mostReadPage.clickOnHeader();
+});
+
+When('I press the TAB key to reveal the Bypass Blocks menu', () => {
+  mostReadPage.pressTab();
+});
+
+Then('the Bypass Blocks menu should become visible', async () => {
+  await mostReadPage.checkBypassLinkContainerAppears();
+});
+
+When('I activate the "Skip to Most Read" option', () => {
+  mostReadPage.pressEnter();
+});
+Then('the URL should contain "#most-read-container"', async () => {
+  await mostReadPage.changedURL();
 });
