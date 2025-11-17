@@ -3,16 +3,29 @@ const { I } = inject();
 export class MostReadPage {
   articleItems: string;
   mobileAttribute: string;
+  mostReadBlock: string;
+  mostReadBlockHeader: string;
 
   constructor() {
-    this.articleItems = '//div[contains(@class, "bypass-block-links-container")]//a[contains(text(), "Skip to Most Read")]';
+    this.mostReadBlock = '//aside[@id="most-read-container"]';
+    this.mostReadBlockHeader = 'h2[id="trending-articles-heading"]'
+    this.articleItems = 'ol.trending-articles__list li';
     this.mobileAttribute = '.bypass-block-link.hidden--mobile';
   }
 
-  async seeMostReadArticles() {
-    I.seeElement(this.articleItems);
+  async seeMostReadBlock() {
+    I.seeElement(this.mostReadBlock);
+    // I.seeElement(this.mostReadBlockHeader);
   }
 
+  async seeMostReadArticles(articleItems: number) {
+    I.seeElement(this.articleItems);
+    I.seeNumberOfElements(this.articleItems, articleItems);
+  }
+
+  async checkNotVisibleHeaderForMobile() {
+    I.dontSeeElement(this.mostReadBlockHeader);
+  }
   async checkNotVisibleForMobile() {
     // I.resizeWindow(375, 812);   // Mobile viewport (iPhone size)
     I.dontSeeElement(this.mobileAttribute);

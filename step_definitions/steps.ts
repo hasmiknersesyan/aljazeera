@@ -1,4 +1,5 @@
 const { I } = inject();
+import assert from 'assert';
 import { MostReadPage } from '../pages/most_read';
 
 let mostReadPage: MostReadPage;
@@ -17,7 +18,11 @@ When('I view the page on a desktop screen size', () => {
 });
 
 Then('I should see the Most Read section', async () => {
-  await mostReadPage.seeMostReadArticles();
+  await mostReadPage.seeMostReadBlock();
+});
+
+Then('I should see the "Most Read" section has 10 posts', async () => {
+ await mostReadPage.seeMostReadArticles(10);
 });
 
 When('I view the page on a mobile screen size', () => {
@@ -26,5 +31,6 @@ When('I view the page on a mobile screen size', () => {
 });
 
 Then('I should not see the Most Read section', async () => {
-  await mostReadPage.checkNotVisibleForMobile();
+  await mostReadPage.checkNotVisibleHeaderForMobile();
 });
+

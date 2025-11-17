@@ -10,7 +10,11 @@ Feature: Interview Task Part 1
   Scenario: The "Most Read" section should be visible on Desktop
     When I view the page on a desktop screen size
     Then I should see the Most Read section
+    And I should see the "Most Read" section has 10 posts
 
   Scenario: The "Most Read" section should be hidden on Mobile
     When I view the page on a mobile screen size
     Then I should not see the Most Read section
+
+
+
