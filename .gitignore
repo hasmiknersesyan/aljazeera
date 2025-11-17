@@ -6,3 +6,6 @@ allure-report/
 allure-history/
 reports/
 screenshots/
+forMe.txt/
+.zencoder/
+.vscode/

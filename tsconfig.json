@@ -1,16 +1,16 @@
 {
+  "ts-node": {
+    "files": true
+  },
   "compilerOptions": {
-    
-    "target": "ES2022",
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "strict": true,
-    "outDir": "dist",
+    "target": "es2018",
+    "lib": ["es2018", "DOM"],
     "esModuleInterop": true,
-    "types": ["node", "codeceptjs"],
-    "resolveJsonModule": true,
+    "module": "commonjs",
+    "strictNullChecks": false,
+    "types": ["codeceptjs", "node"],
+    "declaration": true,
     "skipLibCheck": true
   },
-  "include": ["**/*.ts", "steps.d.ts", "types/**/*.d.ts", "steps/step_definitions.ts", "support/helpers.ts", "support/locators.ts", "pages/HomePage.ts"],
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["node_modules"]
 }
